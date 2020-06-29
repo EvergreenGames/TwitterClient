@@ -9,8 +9,8 @@
 #import "APIManager.h"
 
 static NSString * const baseURLString = @"https://api.twitter.com";
-static NSString * const consumerKey = // Enter your consumer key here
-static NSString * const consumerSecret = // Enter your consumer secret here
+static NSString * const consumerKey = @"mMmc6YfFjRl5zY3Fxf6Va5U5m";// Enter your consumer key here
+static NSString * const consumerSecret = @"beaWaIDw62sR1ITIL94Vl4VLMLL1E9kaMZYq8JU2Ji7IxG0Bbt";// Enter your consumer secret here
 
 @interface APIManager()
 

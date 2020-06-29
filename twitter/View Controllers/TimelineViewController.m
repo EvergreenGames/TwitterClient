@@ -8,8 +8,14 @@
 
 #import "TimelineViewController.h"
 #import "APIManager.h"
+#import "Tweet.h"
+#import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface TimelineViewController ()
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray* tweets;
 
 @end
 
@@ -18,14 +24,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (NSDictionary *dictionary in tweets) {
-                NSString *text = dictionary[@"text"];
-                NSLog(@"%@", text);
-            }
+//            for (NSDictionary *dictionary in tweets) {
+//                NSString *text = dictionary[@"text"];
+//                NSLog(@"%@", text);
+//            }
+            self.tweets = [tweets mutableCopy];
+            [self.tableView reloadData];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
@@ -35,6 +47,26 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.tweets.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TweetCell* cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    
+    Tweet* tweet = self.tweets[indexPath.row];
+    
+    cell.tweet = tweet;
+    cell.dateLabel.text = tweet.createdAtString;
+    cell.displayNameLabel.text = tweet.user.displayName;
+    cell.usernameLabel.text = tweet.user.name;
+    cell.mainTextLabel.text = tweet.text;
+    [cell.retweetButton setTitle:[NSString stringWithFormat:@"%d", tweet.retweetCount] forState:UIControlStateNormal];
+    [cell.likeButton setTitle:[NSString stringWithFormat:@"%d", tweet.favoriteCount] forState:UIControlStateNormal];
+    //[cell.imageView setImageWithURL:tweet.user]
+    return cell;
 }
 
 /*

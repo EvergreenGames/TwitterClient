@@ -26,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)initWithDictionary:(NSDictionary*)dictionary;
 
-+(NSMutableArray*)tweetsWithArray:(NSDictionary*)dictionaries;
++(NSMutableArray*)tweetsWithArray:(NSArray*)dictionaries;
 
 @end
 

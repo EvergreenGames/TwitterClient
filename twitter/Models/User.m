@@ -14,7 +14,7 @@
     self = [super init];
     if(self){
         self.name = dictionary[@"name"];
-        self.name = dictionary[@"screen_name"];
+        self.displayName = dictionary[@"screen_name"];
     }
     return self;
 }

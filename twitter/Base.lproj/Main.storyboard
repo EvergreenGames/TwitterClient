@@ -85,7 +85,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Display Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LNY-dn-cxt">
-                                                    <rect key="frame" x="56" y="12" width="116" height="22"/>
+                                                    <rect key="frame" x="55" y="11" width="129" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -102,12 +102,6 @@
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a test label it is really long. Will it overflow? I don't know. Who knows?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMp-WG-YEy" customClass="TTTAttributedLabel">
-                                                    <rect key="frame" x="55" y="36" width="320" height="41"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYJ-8u-pbw">
                                                     <rect key="frame" x="55" y="121" width="85" height="30"/>
                                                     <constraints>
@@ -116,6 +110,9 @@
                                                     <state key="normal" title="4.2K" image="retweet-icon">
                                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="didTapRetweet:" destination="r0P-y5-oxk" eventType="touchUpInside" id="EeD-fA-sX4"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyt-Tq-EnF">
                                                     <rect key="frame" x="150" y="121" width="85" height="30"/>
@@ -125,6 +122,7 @@
                                                     <state key="normal" title="1234" image="favor-icon">
                                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <state key="selected" image="favor-icon-red"/>
                                                     <connections>
                                                         <action selector="didTapLike:" destination="r0P-y5-oxk" eventType="touchUpInside" id="ibl-pa-lrI"/>
                                                     </connections>
@@ -133,10 +131,17 @@
                                                     <rect key="frame" x="245" y="121" width="30" height="30"/>
                                                     <state key="normal" image="message-icon"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is a test label it is really long. Will it overflow? I don't know. Who knows?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMp-WG-YEy" customClass="TTTAttributedLabel">
+                                                    <rect key="frame" x="54" y="41" width="306" height="51"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="18w-ga-mEu" firstAttribute="leading" secondItem="LNY-dn-cxt" secondAttribute="trailing" constant="8" id="0OW-BV-aBS"/>
                                                 <constraint firstItem="cyt-Tq-EnF" firstAttribute="leading" secondItem="sYJ-8u-pbw" secondAttribute="trailing" constant="10" id="3pD-Fa-tyV"/>
+                                                <constraint firstItem="DMp-WG-YEy" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="sYJ-8u-pbw" secondAttribute="top" id="7uM-Ed-4I8"/>
                                                 <constraint firstItem="oBZ-xn-hc3" firstAttribute="leading" secondItem="Nfj-Or-E11" secondAttribute="leadingMargin" id="8ev-eh-hDC"/>
                                                 <constraint firstItem="rq7-xc-grw" firstAttribute="leading" secondItem="18w-ga-mEu" secondAttribute="trailing" constant="12" id="OFm-4g-6Uv"/>
                                                 <constraint firstItem="6Bm-v2-26c" firstAttribute="bottom" secondItem="Nfj-Or-E11" secondAttribute="bottomMargin" id="RcP-rR-Nfi"/>
@@ -147,7 +152,7 @@
                                                 <constraint firstItem="LNY-dn-cxt" firstAttribute="leading" secondItem="oBZ-xn-hc3" secondAttribute="trailing" constant="8" id="WMY-wT-1jT"/>
                                                 <constraint firstItem="DMp-WG-YEy" firstAttribute="top" secondItem="LNY-dn-cxt" secondAttribute="bottom" constant="3" id="Zex-aw-i16"/>
                                                 <constraint firstItem="rq7-xc-grw" firstAttribute="top" secondItem="18w-ga-mEu" secondAttribute="top" id="dM6-7k-Rbc"/>
-                                                <constraint firstAttribute="trailing" secondItem="DMp-WG-YEy" secondAttribute="trailing" id="fsW-c5-59z"/>
+                                                <constraint firstAttribute="trailing" secondItem="DMp-WG-YEy" secondAttribute="trailing" constant="15" id="fsW-c5-59z"/>
                                                 <constraint firstItem="18w-ga-mEu" firstAttribute="top" secondItem="LNY-dn-cxt" secondAttribute="top" id="kUr-7h-NHP"/>
                                                 <constraint firstItem="LNY-dn-cxt" firstAttribute="top" secondItem="oBZ-xn-hc3" secondAttribute="top" id="lhd-oS-Ynw"/>
                                                 <constraint firstItem="sYJ-8u-pbw" firstAttribute="bottom" secondItem="Nfj-Or-E11" secondAttribute="bottomMargin" id="mUG-X3-Xk8"/>
@@ -277,6 +282,7 @@
         <image name="close-icon" width="26" height="24"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="favor-icon-red" width="30" height="30"/>
         <image name="message-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>

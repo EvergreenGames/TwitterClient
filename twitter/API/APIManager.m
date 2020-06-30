@@ -75,4 +75,26 @@ static NSString * const consumerSecret = @"beaWaIDw62sR1ITIL94Vl4VLMLL1E9kaMZYq8
     }];
 }
 
+- (void)favorite:(Tweet *)tweet status:(BOOL)status completion:(void (^)(Tweet *, NSError *))completion{
+    NSString* urlString = status ? @"1.1/favorites/create.json" : @"1.1/favorites/destroy.json";
+    NSDictionary* parameters = @{@"id": tweet.idStr};
+    [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        Tweet* tweet = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)retweet:(Tweet *)tweet status:(BOOL)status completion:(void (^)(Tweet *, NSError *))completion{
+    NSString* urlString = status ? @"1.1/statuses/retweet/" : @"1.1/statuses/unretweet/";
+    urlString = [[urlString stringByAppendingString:tweet.idStr] stringByAppendingString:@".json"];
+    NSDictionary* parameters = @{@"id": tweet.idStr};
+    [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        Tweet* tweet = [[Tweet alloc] initWithDictionary:responseObject];
+        completion(tweet, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        completion(nil, error);
+    }];
+}
 @end

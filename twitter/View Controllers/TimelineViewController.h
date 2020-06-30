@@ -10,4 +10,6 @@
 
 @interface TimelineViewController : UIViewController
 
+- (void) fetchHomeTimeline;
+
 @end

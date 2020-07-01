@@ -8,6 +8,7 @@
 
 #import "TweetCell.h"
 #import "APIManager.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation TweetCell
 
@@ -75,5 +76,19 @@
     self.retweetButton.selected = self.tweet.retweeted;
     [self.likeButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount] forState:UIControlStateNormal];
     self.likeButton.selected = self.tweet.favorited;
+    
+    self.dateLabel.text = self.tweet.createdAtString;
+    self.displayNameLabel.text = self.tweet.user.displayName;
+    self.usernameLabel.text = self.tweet.user.name;
+    self.mainTextLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+    self.mainTextLabel.text = self.tweet.text;
+    NSURL* pfpURL = [NSURL URLWithString:self.tweet.user.imageURLString];
+    [self.profileImageView setImageWithURL:pfpURL];
+}
+
+- (void)setTweet:(Tweet *)tweet{
+    _tweet = tweet;
+    
+    [self refreshData];
 }
 @end

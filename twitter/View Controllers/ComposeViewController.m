@@ -19,13 +19,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if(self.sourceTweet){
+        self.mainTextView.text = [@"@" stringByAppendingString:self.sourceTweet.user.name];
+        self.title = @"Replying";
+    }
 }
 - (IBAction)closeTabButton:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)tweetTabButton:(id)sender {
-    [[APIManager shared] postStatusWithText:self.mainTextView.text completion:^(Tweet * tweet, NSError * error) {
+    [[APIManager shared] postStatusWithText:self.mainTextView.text sourceTweet:self.sourceTweet completion:^(Tweet * tweet, NSError * error) {
         if(error){
             NSLog(@"Error composing Tweet: %@", error.localizedDescription);
         }

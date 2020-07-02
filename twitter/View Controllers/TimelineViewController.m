@@ -96,6 +96,7 @@
         UINavigationController* navigationController = [segue destinationViewController];
         ComposeViewController* composeController = (ComposeViewController*)navigationController.topViewController;
         composeController.delegate = self;
+        composeController.sourceTweet = nil;
     }
     else if([segue.identifier isEqualToString:@"DetailsView"]){
         UITableViewCell* sourceCell = sender;

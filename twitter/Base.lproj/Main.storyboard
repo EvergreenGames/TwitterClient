@@ -127,10 +127,6 @@
                                                         <action selector="didTapLike:" destination="r0P-y5-oxk" eventType="touchUpInside" id="ibl-pa-lrI"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bm-v2-26c">
-                                                    <rect key="frame" x="245" y="125" width="26" height="26"/>
-                                                    <state key="normal" image="message-icon"/>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a test label it is really long. Will it overflow? I don't know. Who knows?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMp-WG-YEy" customClass="TTTAttributedLabel">
                                                     <rect key="frame" x="55" y="41" width="305" height="41"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -144,10 +140,8 @@
                                                 <constraint firstItem="oBZ-xn-hc3" firstAttribute="leading" secondItem="Nfj-Or-E11" secondAttribute="leadingMargin" id="8ev-eh-hDC"/>
                                                 <constraint firstItem="sYJ-8u-pbw" firstAttribute="bottom" secondItem="Nfj-Or-E11" secondAttribute="bottomMargin" id="CTF-7y-wi6"/>
                                                 <constraint firstItem="rq7-xc-grw" firstAttribute="leading" secondItem="18w-ga-mEu" secondAttribute="trailing" constant="12" id="OFm-4g-6Uv"/>
-                                                <constraint firstItem="6Bm-v2-26c" firstAttribute="bottom" secondItem="Nfj-Or-E11" secondAttribute="bottomMargin" id="RcP-rR-Nfi"/>
                                                 <constraint firstItem="DMp-WG-YEy" firstAttribute="leading" secondItem="oBZ-xn-hc3" secondAttribute="trailing" constant="8" id="S13-Ga-EUW"/>
                                                 <constraint firstItem="DMp-WG-YEy" firstAttribute="leading" secondItem="LNY-dn-cxt" secondAttribute="leading" id="SNh-I0-Bwo"/>
-                                                <constraint firstItem="6Bm-v2-26c" firstAttribute="leading" secondItem="cyt-Tq-EnF" secondAttribute="trailing" constant="10" id="T7s-sN-RZg"/>
                                                 <constraint firstItem="sYJ-8u-pbw" firstAttribute="leading" secondItem="DMp-WG-YEy" secondAttribute="leading" id="U3y-Ln-wci"/>
                                                 <constraint firstItem="LNY-dn-cxt" firstAttribute="leading" secondItem="oBZ-xn-hc3" secondAttribute="trailing" constant="8" id="WMY-wT-1jT"/>
                                                 <constraint firstItem="DMp-WG-YEy" firstAttribute="top" secondItem="LNY-dn-cxt" secondAttribute="bottom" constant="8" id="Zex-aw-i16"/>
@@ -165,7 +159,6 @@
                                             <outlet property="displayNameLabel" destination="LNY-dn-cxt" id="GYD-cW-8Dl"/>
                                             <outlet property="likeButton" destination="cyt-Tq-EnF" id="2Rd-hw-Vu7"/>
                                             <outlet property="mainTextLabel" destination="DMp-WG-YEy" id="ZKE-1T-DuJ"/>
-                                            <outlet property="messageButton" destination="6Bm-v2-26c" id="lcr-2b-8nF"/>
                                             <outlet property="profileImageView" destination="oBZ-xn-hc3" id="bBj-c6-l6W"/>
                                             <outlet property="retweetButton" destination="sYJ-8u-pbw" id="Vq7-fe-SXH"/>
                                             <outlet property="textLabel" destination="DMp-WG-YEy" id="8bp-Nk-be9"/>
@@ -277,6 +270,9 @@
                                     <constraint firstAttribute="height" constant="18" id="hfq-Sy-v2n"/>
                                 </constraints>
                                 <state key="normal" image="reply-icon"/>
+                                <connections>
+                                    <segue destination="YWc-hd-0Dv" kind="presentation" identifier="ComposeView" id="GCM-Jc-ZLI"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aga-9t-WhW">
                                 <rect key="frame" x="16" y="275" width="343" height="1"/>
@@ -380,7 +376,7 @@
             </objects>
             <point key="canvasLocation" x="2597.5999999999999" y="36.431784107946029"/>
         </scene>
-        <!--Compose View Controller-->
+        <!--New Tweet-->
         <scene sceneID="9UR-sw-0vQ">
             <objects>
                 <viewController id="E1m-7C-2DW" customClass="ComposeViewController" sceneMemberID="viewController">
@@ -400,7 +396,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="aaK-XX-EtD"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aRG-wv-fow">
+                    <navigationItem key="navigationItem" title="New Tweet" id="aRG-wv-fow">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="close-icon" id="iqy-fe-FDL">
                             <connections>
                                 <action selector="closeTabButton:" destination="E1m-7C-2DW" id="9qr-X4-7yf"/>
@@ -418,7 +414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8f-Wn-9tQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2599.1999999999998" y="774.06296851574223"/>
+            <point key="canvasLocation" x="3002" y="842"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WUT-Ke-VeR">
@@ -455,16 +451,18 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5TW-ES-S0a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="773.16341829085468"/>
+            <point key="canvasLocation" x="2103" y="842"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GCM-Jc-ZLI"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="TwitterLogoBlue" width="200" height="200"/>
         <image name="close-icon" width="26" height="24"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
         <image name="favor-icon-red" width="30" height="30"/>
-        <image name="message-icon" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
     </resources>

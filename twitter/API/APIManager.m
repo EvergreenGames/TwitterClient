@@ -48,13 +48,13 @@ static NSString * const consumerSecret = @"beaWaIDw62sR1ITIL94Vl4VLMLL1E9kaMZYq8
     return self;
 }
 
-- (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion {
+- (void)getHomeTimelineWithCompletion:(void(^)(NSArray<Tweet*> *tweets, NSError *error))completion {
     
     [self GET:@"1.1/statuses/home_timeline.json?tweet_mode=extended"
-   parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+   parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaryArray) {
        
        // Manually cache the tweets. If the request fails, restore from cache if possible.
-        NSMutableArray* tweets = [Tweet tweetsWithArray:tweetDictionaries];
+        NSMutableArray* tweets = [Tweet tweetsWithArray:tweetDictionaryArray];
 
        completion(tweets, nil);
        

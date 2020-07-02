@@ -41,7 +41,7 @@
             if(error){
                 self.tweet.favorited = NO;
                 self.tweet.favoriteCount -= 1;
-                NSLog(@"%@", error);
+                NSLog(@"Error processing favorite: %@", error.localizedDescription);
             }
         }];
     }
@@ -52,7 +52,7 @@
             if(error){
                 self.tweet.favorited = YES;
                 self.tweet.favoriteCount += 1;
-                NSLog(@"%@", error);
+                NSLog(@"Error processing unfavorite: %@", error.localizedDescription);
             }
         }];
     }
@@ -67,7 +67,7 @@
             if(error){
                 self.tweet.retweeted = NO;
                 self.tweet.retweetCount -= 1;
-                NSLog(@"%@", error);
+                NSLog(@"Error processing retweet: %@", error.localizedDescription);
             }
         }];
     }
@@ -78,7 +78,7 @@
             if(error){
                 self.tweet.retweeted = YES;
                 self.tweet.retweetCount += 1;
-                NSLog(@"%@", error);
+                NSLog(@"Error processing unretweet: %@", error.localizedDescription);
             }
         }];
     }

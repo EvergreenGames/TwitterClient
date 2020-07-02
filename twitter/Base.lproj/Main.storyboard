@@ -384,9 +384,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OgS-4D-U1w">
-                                <rect key="frame" x="0.0" y="44" width="375" height="215"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OgS-4D-U1w">
+                                <rect key="frame" x="0.0" y="44" width="375" height="603"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -394,6 +393,12 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="OgS-4D-U1w" firstAttribute="bottom" secondItem="aaK-XX-EtD" secondAttribute="bottom" id="SzR-4l-Dmo"/>
+                            <constraint firstItem="OgS-4D-U1w" firstAttribute="leading" secondItem="aaK-XX-EtD" secondAttribute="leading" id="TrO-b7-C9A"/>
+                            <constraint firstItem="OgS-4D-U1w" firstAttribute="trailing" secondItem="aaK-XX-EtD" secondAttribute="trailing" id="qms-zn-We5"/>
+                            <constraint firstItem="OgS-4D-U1w" firstAttribute="top" secondItem="tHV-Jx-Pju" secondAttribute="top" constant="44" id="xpC-4X-412"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aaK-XX-EtD"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Tweet" id="aRG-wv-fow">
@@ -414,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8f-Wn-9tQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3002" y="842"/>
+            <point key="canvasLocation" x="3000.8000000000002" y="841.52923538230891"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WUT-Ke-VeR">

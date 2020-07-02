@@ -22,7 +22,7 @@
             dictionary = originalTweet;
         }
         self.idStr = dictionary[@"id_str"];
-        self.text = dictionary[@"text"];
+        self.text = dictionary[@"full_text"];
         self.favoriteCount = [dictionary[@"favorite_count"] intValue];
         self.favorited = [dictionary[@"favorited"] boolValue];
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
@@ -35,7 +35,8 @@
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         NSDate* date = [formatter dateFromString:createdAtOriginalString];
-        self.createdAtString = date.shortTimeAgoSinceNow;
+        self.timeAgoString = date.shortTimeAgoSinceNow;
+        self.createdAtString = [date formattedDateWithStyle:NSDateFormatterShortStyle];
     }
     
     return self;

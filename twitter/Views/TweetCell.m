@@ -77,7 +77,7 @@
     [self.likeButton setTitle:[NSString stringWithFormat:@"%d", self.tweet.favoriteCount] forState:UIControlStateNormal];
     self.likeButton.selected = self.tweet.favorited;
     
-    self.dateLabel.text = self.tweet.createdAtString;
+    self.dateLabel.text = self.tweet.timeAgoString;
     self.displayNameLabel.text = self.tweet.user.displayName;
     self.usernameLabel.text = self.tweet.user.name;
     self.mainTextLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;

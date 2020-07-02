@@ -12,6 +12,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "DetailsViewController.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 
@@ -36,6 +37,12 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     [self fetchHomeTimeline];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
 - (void) fetchHomeTimeline {
@@ -82,9 +89,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UINavigationController* navigationController = [segue destinationViewController];
-    ComposeViewController* composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
+    if([segue.identifier isEqualToString:@"ComposeView"]){
+        UINavigationController* navigationController = [segue destinationViewController];
+        ComposeViewController* composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+    else if([segue.identifier isEqualToString:@"DetailsView"]){
+        UITableViewCell* sourceCell = sender;
+        NSIndexPath* sourceIndex = [self.tableView indexPathForCell:sourceCell];
+        
+        DetailsViewController* detailController = [segue destinationViewController];
+        detailController.tweet = self.tweets[sourceIndex.row];
+    }
 }
 
 - (IBAction)didTapLogout:(id)sender {

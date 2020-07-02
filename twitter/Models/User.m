@@ -13,8 +13,8 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary{
     self = [super init];
     if(self){
-        self.name = dictionary[@"name"];
-        self.displayName = dictionary[@"screen_name"];
+        self.name = dictionary[@"screen_name"];
+        self.displayName = dictionary[@"name"];
         self.imageURLString = dictionary[@"profile_image_url_https"];
     }
     return self;

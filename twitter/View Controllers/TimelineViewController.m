@@ -42,7 +42,10 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+    NSIndexPath* index = self.tableView.indexPathForSelectedRow;
+    TweetCell* cell = (TweetCell*)[(UITableView*)self.tableView cellForRowAtIndexPath:index];
+    [cell refreshData];
+    [self.tableView deselectRowAtIndexPath:index animated:animated];
 }
 
 - (void) fetchHomeTimeline {

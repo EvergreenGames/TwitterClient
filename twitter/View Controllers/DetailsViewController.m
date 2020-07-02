@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "APIManager.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *displayNameLabel;
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCountLabel;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 
 @end
 
@@ -25,6 +27,63 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self refreshData];
+}
+
+- (IBAction)didTapLike:(id)sender {
+    if(!self.tweet.favorited){
+        self.tweet.favorited = YES;
+        self.tweet.favoriteCount += 1;
+        [[APIManager shared] favorite:self.tweet status:YES completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                self.tweet.favorited = NO;
+                self.tweet.favoriteCount -= 1;
+                NSLog(@"%@", error);
+            }
+        }];
+    }
+    else{
+        self.tweet.favorited = NO;
+        self.tweet.favoriteCount -= 1;
+        [[APIManager shared] favorite:self.tweet status:NO completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                self.tweet.favorited = YES;
+                self.tweet.favoriteCount += 1;
+                NSLog(@"%@", error);
+            }
+        }];
+    }
+    
+    [self refreshData];
+}
+- (IBAction)didTapRetweet:(id)sender {
+    if(!self.tweet.retweeted){
+        self.tweet.retweeted = YES;
+        self.tweet.retweetCount += 1;
+        [[APIManager shared] retweet:self.tweet status:YES completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                self.tweet.retweeted = NO;
+                self.tweet.retweetCount -= 1;
+                NSLog(@"%@", error);
+            }
+        }];
+    }
+    else{
+        self.tweet.retweeted = NO;
+        self.tweet.retweetCount -= 1;
+        [[APIManager shared] retweet:self.tweet status:NO completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                self.tweet.retweeted = YES;
+                self.tweet.retweetCount += 1;
+                NSLog(@"%@", error);
+            }
+        }];
+    }
+    
+    [self refreshData];
+}
+
+-(void) refreshData {
     self.displayNameLabel.text = self.tweet.user.displayName;
     self.userNameLabel.text = self.tweet.user.name;
     [self.profileImageView setImageWithURL:[NSURL URLWithString:self.tweet.user.imageURLString]];
@@ -32,8 +91,7 @@
     self.dateLabel.text = self.tweet.createdAtString;
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
     self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
-    // Do any additional setup after loading the view.
-    
+    self.likeButton.selected = self.tweet.favorited;
 }
 
 /*
